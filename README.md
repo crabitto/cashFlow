@@ -77,7 +77,3 @@ fintrack/
 ## Versiju kontrole un sadarbība
 
 Visa projekta attīstība tiek veikta, izmantojot **GitHub**, kurā tiek glabāts kods un dokumentācija. Tas ļauj izsekot visām izmaiņām un strādāt komandā efektīvi.
-
----
-
-Ja nepieciešams, pievienojiet arī saiti uz video demonstrāciju projekta darbībā.
