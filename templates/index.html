@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if chart %}
+<h3>Chart</h3>
+<img src="data:image/png;base64,{{ chart }}" alt="Chart" class="chart">
+{% endif %}
+<h2>Current Balance: {{ balance }} €</h2>
+{% endblock %}
