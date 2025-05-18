@@ -5,7 +5,7 @@
 
 ## Projekta apraksts
 
-FinTrack ir tīmekļa lietotne, kas palīdz pārvaldīt personīgos ienākumus un izdevumus, sniedzot skaidru pārskatu par jūsu finanšu bilanci. Programmatūra ļauj ērti pievienot jaunas finanšu transakcijas, pārlūkot esošos ierakstus ar iespēju tos filtrēt un kārtot pēc datuma vai kategorijas, kā arī ģenerēt statistikas grafikus, lai vieglāk saprastu savas naudas plūsmas.
+CashFlow ir tīmekļa lietotne, kas palīdz pārvaldīt personīgos ienākumus un izdevumus, sniedzot skaidru pārskatu par jūsu finanšu bilanci. Programmatūra ļauj ērti pievienot jaunas finanšu transakcijas, pārlūkot esošos ierakstus ar iespēju tos filtrēt un kārtot pēc datuma vai kategorijas, kā arī ģenerēt statistikas grafikus, lai vieglāk saprastu savas naudas plūsmas.
 
 Šī sistēma ir izstrādāta, lai automatizētu ikdienas finanšu uzskaiti un palīdzētu lietotājam pārskatīt savus izdevumus un ienākumus vienuviet, bez nepieciešamības izmantot sarežģītas grāmatvedības programmas.
 
@@ -103,7 +103,7 @@ Atveriet [http://127.0.0.1:5000](http://127.0.0.1:5000) un sāciet lietot CashFl
 ## Projekta struktūra
 
 ```
-fintrack/
+cashflow/
 │
 ├── app.py                ← Flask serveris
 ├── templates/            ← HTML lapu šabloni
