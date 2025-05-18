@@ -1,5 +1,5 @@
 
-# FinTrack – personīgās finanšu uzskaites sistēma
+# CashFlow – personīgās finanšu uzskaites sistēma
 
 ---
 
@@ -58,6 +58,48 @@ Izvēlieties sadaļu **"Home"**, lai redzētu vizualizācijas par izdevumiem un 
 
 ---
 
+## Kā palaist projektu
+
+1. **Klonēt repozitoriju:**
+
+```bash
+git clone https://github.com/crabitto/cashFlow.git
+cd cashflow
+```
+
+2. **Izveidot un aktivizēt virtuālo vidi:**
+
+- Windows:
+
+```bash
+python -m venv venv
+venv\Scripts\activate
+```
+
+- macOS/Linux:
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+3. **Uzstādīt nepieciešamās bibliotēkas:**
+
+```bash
+pip install -r requirements.txt
+```
+
+4. **Palaist Flask serveri:**
+
+```bash
+python app.py
+```
+
+5. **Atvērt pārlūkprogrammā:**
+
+Atveriet [http://127.0.0.1:5000](http://127.0.0.1:5000) un sāciet lietot CashFlow.
+
+---
 ## Projekta struktūra
 
 ```
