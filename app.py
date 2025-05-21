@@ -21,13 +21,15 @@ def save_data(data):
     with open(DATA_FILE, 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=4)
 
+# galvena lapa, balance+pie
 @app.route('/')
 def index():
     records = load_data()
-    balance = sum([r['amount'] if r['type'] == 'income' else -r['amount'] for r in records])
+    balance = sum([r['amount'] if r['type'] == 'income' else -r['amount'] for r in records]) #skaitam balance no jsona
     chart = generate_chart(records)
     return render_template('index.html', balance=balance, records=records, chart=chart)
 
+# pievienot jaunu ierakstu
 @app.route('/add', methods=['GET', 'POST'])
 def add():
     if request.method == 'POST':
@@ -44,6 +46,7 @@ def add():
         return redirect('/')
     return render_template('add.html')
 
+# delete pec indeksa
 @app.route('/delete/<int:index>', methods=['POST'])
 def delete(index):
     records = load_data()
@@ -52,6 +55,7 @@ def delete(index):
         save_data(records)
     return redirect('/view')    
 
+# edit eksistejoso ierakstu 
 @app.route('/edit/<int:index>', methods=['GET', 'POST'])
 def edit(index):
     records = load_data()
@@ -69,11 +73,13 @@ def edit(index):
         return render_template('edit.html', record=records[index], index=index)
     return redirect('/view')
 
+# lapa ar visiem ierakstiem un filtriem meklesanai
 @app.route('/view')
 def view():
     records = load_data()
     filtered = records
 
+    #filtri
     category = request.args.get('category')
     date_from = request.args.get('from')
     date_to = request.args.get('to')
@@ -86,12 +92,14 @@ def view():
     if date_to:
         filtered = [r for r in filtered if r['date'] <= date_to]
 
+    # search by apraksts
     search = request.args.get('search', '').strip().lower()
     if search:
         filtered = [r for r in filtered if search in r['description'].lower()]
 
-    filtered = sorted(filtered, key=lambda x: x['date'], reverse=True)
-
+    filtered = sorted(filtered, key=lambda x: x['date'], reverse=True)  
+    
+    #pec maksimalas summas
     max_amount = request.args.get('max_amount')
     if max_amount:
         try:
@@ -108,6 +116,7 @@ def view():
                            max_amount=max_amount or '',
                            search=search)
 
+# pie ienakumi izdevumi
 def generate_chart(records):
     income = {}
     expense = {}
@@ -120,23 +129,23 @@ def generate_chart(records):
         else:
             expense[cat] = expense.get(cat, 0) + amt
 
-    fig, axs = plt.subplots(1, 2, figsize=(8, 4))
+    fig, axs = plt.subplots(1, 2, figsize=(8, 4)) #divas diag
 
     def pie(ax, data, title):
         if data:
             ax.pie(data.values(), labels=data.keys(), autopct='%1.1f%%')
             ax.set_title(title)
         else:
-            ax.text(0.5, 0.5, 'No data', ha='center')
+            ax.text(0.5, 0.5, 'No data', ha='center') #decoy
 
     pie(axs[0], income, 'Income')
     pie(axs[1], expense, 'Expenses')
 
     img = BytesIO()
     plt.tight_layout()
-    plt.savefig(img, format='png')
+    plt.savefig(img, format='png') #saglabajam pie
     img.seek(0)
-    return base64.b64encode(img.getvalue()).decode()
+    return base64.b64encode(img.getvalue()).decode() #return template
 
 if __name__ == '__main__':
     app.run(debug=True)
